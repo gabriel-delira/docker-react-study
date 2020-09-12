@@ -1,0 +1,19 @@
+Pra rodar esse docker ai
+
+ - docker build -f Dockerfile.dev .                     // Esse comando eh pra buildar especificando o Dockerfile (-f <fileName>) apartir da pasta em q
+                                                        // se encontra (.), no caso eh essa pasta do frontend
+
+ - pega o ID do container gerado e roda "docker run -p 3000:3000 <dockerID>"
+
+Usando agora o volume para poder atualizar o codigo dentro do container sem ter de ficar rebuildando:
+    - Roda o build igual ao de cima
+
+    - Roda "docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app <dockerImageID>"
+        * Observa q o 1 volume eh so pra manter a pasta node_modules
+        * Adicionamos um volume no nosso container pra ele ficar vinculado direto com nosso codigo
+
+
+Usando o docker-compose:
+    - Roda o build igual ao de cima
+
+    - Roda "docker-compose up --build"
